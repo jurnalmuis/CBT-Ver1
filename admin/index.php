@@ -17,8 +17,16 @@
     </style>
   </head>
   <body class="gambar">
+    <?php
+    session_start(); // Start session nya
+    // Kita cek apakah user sudah login atau belum
+    // Cek nya dengan cara cek apakah terdapat session username atau tidak
+    if(isset($_SESSION['username'])){ // Jika session username ada berarti dia sudah login
+      header("location: beranda.php"); // Kita Redirect ke halaman welcome.php
+    }
+    ?>
     <div class="container-fluid text-center">
-      <form class="login-margin" action="cek_login.php" method="post">
+      <form class="login-margin" method="post" action="cek_login.php">
         <div class="">
           <img src="../img/admin.png" style="width:150px;">
         </div>
@@ -26,10 +34,10 @@
           Administrator CBT
         </div>
         <div class="mt-1">
-          <input id="username" type="text" class="rounded-0" style="width:250px; padding:7px;" placeholder="Masukkan Username">
+          <input name="username" type="text" class="rounded-0" style="width:250px; padding:7px;" placeholder="Masukkan Username">
         </div>
         <div class="mt-1">
-          <input id="password" type="password" class="rounded-0" style="width:250px; padding:7px;" placeholder="Masukkan Password">
+          <input name="password" type="password" class="rounded-0" style="width:250px; padding:7px;" placeholder="Masukkan Password">
         </div>
         <?php
         if(isset($_GET['pesan'])){

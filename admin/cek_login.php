@@ -1,18 +1,20 @@
 <?php
-// Mengaktigkan Session User
+// mengaktifkan session php
 session_start();
-// Menghungkan ke database
-include '../included/koneksi.php';
-// menangkap data dari form login
+
+// menghubungkan dengan koneksi
+include '../included/penghubung.php';
+
+// menangkap data yang dikirim dari form
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-// menyeleksi data user.
-$login = mysqli_query($koneksi,"Select * from usr_admin where Username='$username' and Password='$password'");
-// menghitung jumlah data yang ditemukan
-$cek = mysqli_num_rows($login);
+// menyeleksi data admin dengan username dan password yang sesuai
+$data = mysqli_query($connectdb,"select * from usr_admin where Username='$username' and Password='$password'");
 
-// cek username dan Password
+// menghitung jumlah data yang ditemukan
+$cek = mysqli_num_rows($data);
+
 if($cek > 0){
 	$_SESSION['username'] = $username;
 	$_SESSION['status'] = "login";
@@ -20,5 +22,4 @@ if($cek > 0){
 }else{
 	header("location:index.php?pesan=gagal");
 }
-
- ?>
+?>
