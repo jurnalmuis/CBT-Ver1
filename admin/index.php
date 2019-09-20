@@ -18,7 +18,7 @@
   </head>
   <body class="gambar">
     <div class="container-fluid text-center">
-      <form class="login-margin">
+      <form class="login-margin" action="cek_login.php" method="post">
         <div class="">
           <img src="../img/admin.png" style="width:150px;">
         </div>
@@ -26,13 +26,20 @@
           Administrator CBT
         </div>
         <div class="mt-1">
-          <input type="text" class="rounded-0" style="width:250px; padding:7px;" placeholder="Masukkan Username">
+          <input id="username" type="text" class="rounded-0" style="width:250px; padding:7px;" placeholder="Masukkan Username">
         </div>
         <div class="mt-1">
-          <input type="password" class="rounded-0" style="width:250px; padding:7px;" placeholder="Masukkan Password">
+          <input id="password" type="password" class="rounded-0" style="width:250px; padding:7px;" placeholder="Masukkan Password">
         </div>
+        <?php
+        if(isset($_GET['pesan'])){
+          if($_GET['pesan']=="gagal"){
+            echo "<div class=' text-warning text-center'>Username & Password Salah.</div>";
+          }
+        }
+        ?>
         <div class="mt-4">
-          <button type="submit" class="btn btn-primary rounded-0" style="width:250px;"><strong>MASUK</strong></button>
+          <input type="submit" class="btn btn-primary rounded-0" style="width:250px;" value="MASUK">
         </div>
       </form>
     </div>
